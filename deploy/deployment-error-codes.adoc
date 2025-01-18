@@ -1,0 +1,146 @@
+---
+permalink: deploy/deployment-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 'Cette page présente les codes d"erreur relatifs aux opérations de déploiement, de redémarrage et de restauration des outils ONTAP pour le système VMware vSphere.' 
+---
+= Codes d'erreur de déploiement
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Des codes d'erreur peuvent s'afficher lors du déploiement, du redémarrage et des opérations de restauration des outils ONTAP pour VMware vSphere. Les codes d'erreur sont composés de cinq chiffres, les deux premiers chiffres représentant le script qui a rencontré le problème, et les trois derniers chiffres représentent le flux de travail spécifique de ce script.
+
+Tous les journaux d'erreurs sont enregistrés dans le fichier ansible-perl-errors.log pour faciliter le suivi et la résolution des problèmes. Ce fichier journal contient le code d'erreur et la tâche Ansible qui a échoué.
+
+
+NOTE: Les codes d'erreur fournis sur cette page sont fournis à titre de référence uniquement. Contactez l'équipe d'assistance si l'erreur persiste ou si aucune résolution n'est mentionnée.
+
+Le tableau suivant répertorie les codes d'erreur et les noms de fichier correspondants.
+
+|===
+
+
+| *Code d'erreur* | *Nom du script* 
+
+
+| 00 | firstboot-network-config.pl, mode deploy 
+
+
+| 01 | firstboot-network-config.pl, mise à niveau du mode 
+
+
+| 02 | firstboot-inputs-validation.pl 
+
+
+| 03 | firstboot-deploy-otv-ng.pl, déploiement, haute disponibilité 
+
+
+| 04 | firstboot-deploy-otv-ng.pl, déploiement, non ha 
+
+
+| 05 | firstboot-deploy-otv-ng.pl, redémarrer 
+
+
+| 06 | firstboot-deploy-otv-ng.pl, mise à niveau, ha 
+
+
+| 07 | firstboot-deploy-otv-ng.pl, mise à niveau, non ha 
+
+
+| 08 | firstboot-otv-recovery.pl 
+|===
+Les trois derniers chiffres du code d'erreur indiquent l'erreur de flux de travail spécifique dans le script :
+
+|===
+
+
+| *Code d'erreur de déploiement* | *Workflow* | *Résolution* 
+
+
+| 050 | Échec de la génération de la clé SSH | Redémarrez la machine virtuelle (VM) principale. 
+
+
+| 051 | Échec du déploiement des VM secondaires | * Si les deuxième et troisième machines virtuelles sont créées, assurez-vous qu'il y a suffisamment de ressources CPU/mémoire disponibles avant de mettre les machines virtuelles secondaires sous tension et de redémarrer la machine virtuelle principale. * Si les deuxième et troisième machines virtuelles sont en cours de déploiement des outils ONTAP pour la tâche de modèle VMware vSphere, attendez que la tâche soit terminée, mettez les machines virtuelles sous tension et redémarrez la machine virtuelle principale. * Redéployer. 
+
+
+| 052 | Échec de la copie des clés SSH | Redémarrez la machine virtuelle principale. 
+
+
+| 053 | Echec de l'installation de RKE2 | Exécutez les opérations suivantes et redémarrez la machine virtuelle principale ou redéployez : sudo rke2-killall.sh (toutes les machines virtuelles) sudo rke2-uninstall.sh (toutes les machines virtuelles). 
+
+
+| 054 | Échec du paramétrage kubeconfig | Redéploiement 
+
+
+| 055 | Échec du déploiement du registre | Si le pod de registre est présent, attendez que le pod soit prêt, puis redémarrez la machine virtuelle principale ou redéployez-la. 
+
+
+| 056 | La connexion ISCSI a échoué | Vérifiez que le protocole iSCSI est activé et configuré correctement sur ONTAP. Vérifiez que l'adresse IP de la LIF de données iSCSI fournie est correcte et en ligne. Redémarrez la machine virtuelle si les points précédents sont corrects. Sinon, redéployer. 
+
+
+| 057 | Le déploiement de Trident a échoué | *Assurez-vous que les adresses IP de la LIF de gestion et de la LIF de données sont accessibles depuis la VM. *Assurez-vous que le protocole NFS ou iSCSI est activé et configuré correctement sur ONTAP. *Assurez-vous que l'adresse IP de la LIF de données NFS/iSCSI fournie est correcte et en ligne. *Assurez-vous que le nom d'utilisateur et le mot de passe fournis sont corrects et que l'utilisateur dispose de privilèges suffisants pour créer un volume. * Redémarrez si tous les points ci-dessus sont corrects. Sinon, redéployer. 
+
+
+| 058 | L'importation de Trident a échoué | *Assurez-vous que le nom d'utilisateur et le mot de passe fournis sont corrects et que l'utilisateur dispose des privilèges suffisants pour créer, monter, cloner et supprimer des volumes. *Assurez-vous que la même configuration ONTAP est utilisée pour restaurer la configuration et réessayer la récupération. 
+
+
+| 059 | Échec du déploiement KubeVip | Assurez-vous que l'adresse IP virtuelle du plan de contrôle Kubernetes et l'adresse IP de l'équilibreur de charge fournies lors du déploiement appartiennent au même VLAN et sont des adresses IP libres. Redémarrez si tous les points précédents sont corrects. Sinon, redéployer. 
+
+
+| 060 | Le déploiement de l'opérateur a échoué | Redémarrer 
+
+
+| 061 | Le déploiement des services a échoué | Effectuez des opérations de débogage Kubernetes de base comme GET pods, GET RS, GET svc, etc. Dans l'espace de noms du système ntv pour plus de détails et des journaux d'erreurs dans /var/log/ansible-perl-errors.log et /var/log/ansible-run.log et redéployez. 
+
+
+| 062 | Échec du déploiement de VASA Provider et SRA | Reportez-vous aux journaux d'erreurs à l'adresse /var/log/ansible-perl-errors.log pour plus de détails et redéployez. 
+
+
+| 064 | version.xml échec de la vérification | Redéploiement 
+
+
+| 065 | L'URL de la page swagger est inaccessible | Redéploiement 
+
+
+| 066 | Les étapes post-déploiement ont échoué | - 
+
+
+| 088 | La configuration de la rotation du journal pour journald a échoué | Redémarrez la machine virtuelle principale. 
+
+
+| 089 | La modification de la propriété du fichier de configuration de rotation du journal de synthèse a échoué | Redémarrez la machine virtuelle principale. 
+|===
+|===
+
+
+| *Redémarrez le code d'erreur* | *Workflow* 
+
+
+| 067 | Délai d'attente du serveur rke2 dépassé 
+
+
+| 101 | Echec de la réinitialisation du mot de passe utilisateur maint/Console 
+
+
+| 102 | Échec de la suppression du fichier de mot de passe lors de la réinitialisation du mot de passe utilisateur maint/Console 
+
+
+| 103 | Échec de la mise à jour du nouveau mot de passe utilisateur maint/Console dans le coffre-fort 
+|===
+|===
+
+
+| *Code d'erreur de récupération* | *Workflow* | *Résolution* 
+
+
+| 104 | Les étapes de post-restauration ont échoué. | - 
+
+
+| 105 | La copie du contenu vers le volume de récupération a échoué. | - 
+
+
+| 106 | Impossible de monter le volume de restauration. | * Assurez-vous que le même SVM est utilisé et que le volume de récupération est présent dans la SVM. (Le nom du volume de restauration commence par otvng_Trident_Recovery) * Assurez-vous que les adresses IP de la LIF de gestion et des LIF de données sont accessibles depuis la machine virtuelle. * Assurez-vous que le protocole NFS/iSCSI est activé et configuré correctement sur ONTAP. * Assurez-vous que l'adresse IP NFS/iSCSI DAT LIF fournie est correcte et en ligne. * Assurez-vous que le nom d'utilisateur, le mot de passe et le protocole fournis sont corrects et que l'utilisateur dispose des privilèges suffisants pour créer, monter, cloner, supprimer. * Réessayer la récupération 
+|===

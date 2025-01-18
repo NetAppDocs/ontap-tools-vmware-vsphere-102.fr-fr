@@ -1,0 +1,26 @@
+---
+permalink: configure/configure-network-access.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous pouvez choisir d"autoriser peu d"adresses hôtes ESXi spécifiques pour l"opération de montage du datastore.' 
+---
+= Configurer l'accès au réseau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous avez plusieurs adresses IP d'hôte ESXi, toutes les adresses IP découvertes de l'hôte sont ajoutées à une export policy par défaut. Si vous ne souhaitez pas ajouter toutes les adresses IP à une export policy, indiquez un paramètre permettant d'autoriser des adresses IP spécifiques dans une liste ou une plage séparées par des virgules ou CIDR, ou une combinaison des trois pour chaque vCenter.
+
+Vous pouvez choisir d'autoriser quelques adresses hôtes ESXi spécifiques pour l'opération de montage du datastore. Si le paramètre n'est pas fourni, la règle d'export ajoute toutes les adresses IP découvertes lors de l'étape de pré-montage. Si le paramètre est fourni, les outils ONTAP pour VMware vSphere ajoutent uniquement ceux qui sont compris dans la plage ou les adresses IP répertoriées. Si aucune des adresses IP d'un hôte n'appartient aux adresses IP répertoriées, le montage sur cet hôte échoue.
+
+.Étapes
+. Connectez-vous au client vSphere à l'aide de `\https://vcenterip/ui`
+. Dans la page des raccourcis, cliquez sur *NetApp ONTAP Tools* dans la section des modules externes.
+. Dans le volet gauche des outils ONTAP, accédez à *Paramètres* > *gérer l'accès au réseau* > *Modifier*.
++
+Utilisez une virgule (,) pour séparer les adresses IP. Vous pouvez spécifier une adresse IP spécifique, une plage d'adresses IP ou des adresses IPv6.
+
+. Cliquez sur *Enregistrer*.
+

@@ -1,0 +1,44 @@
+---
+permalink: protect/map-resource.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous devez mapper vos ressources sur le site protégé et le site de reprise de manière à ce que les machines virtuelles soient configurées pour basculer vers un groupe d"hôtes ou vers un autre.' 
+---
+= Configurer les mappages de ressources
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez mapper vos ressources sur le site protégé et le site de reprise de manière à ce que les machines virtuelles soient configurées pour basculer vers un groupe d'hôtes ou vers un autre.
+
+*Ce dont vous aurez besoin*
+
+Vous devez avoir connecté les sites protégés et de reprise.
+
+
+NOTE: Dans VMware Live site Recovery, les ressources peuvent être des pools de ressources, des hôtes ESXi ou des clusters vSphere.
+
+*Étapes*
+
+. Connectez-vous à vCenter Server et cliquez sur *site Recovery* > *sites*.
+. Sélectionnez votre site protégé et cliquez sur *gérer*.
+. Dans l'onglet gérer, sélectionnez *mappages de ressources*.
+. Cliquez sur *Nouveau* pour créer un mappage de ressources.
++
+L'assistant de création de mappage de ressources s'affiche.
+
+. Dans l'assistant Créer un mappage de ressources, effectuez les opérations suivantes :
++
+.. Sélectionnez *préparer automatiquement les mappages pour la ressource avec les noms correspondants* et cliquez sur *Suivant*.
+.. Sélectionnez les objets de centre de données requis pour les sites protégés et de récupération, puis cliquez sur *Ajouter des mappages*.
+.. Cliquez sur *Suivant* une fois les mappages créés.
+.. Sélectionnez l'objet utilisé précédemment pour créer le mappage inverse, puis cliquez sur *Terminer*.
+
+
+
+
+*Résultat*
+
+La page mappages des ressources affiche les ressources protégées du site et les ressources du site de reprise. Vous pouvez suivre les mêmes étapes pour les autres réseaux de votre environnement.

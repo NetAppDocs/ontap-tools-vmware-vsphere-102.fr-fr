@@ -1,0 +1,61 @@
+---
+permalink: recover/recovery-deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Si vous perdez vos outils ONTAP pour la configuration de VMware vSphere, tout en faisant fonctionner votre ONTAP, vous pouvez récupérer les outils ONTAP pour la configuration de VMware vSphere à l"aide de ONTAP. Lorsque vous perdez la configuration, arrêtez-la en douceur.' 
+---
+= Restaurez vos outils ONTAP pour la configuration de VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En cas de perte de vos outils ONTAP pour la configuration de VMware vSphere, vous pouvez restaurer les outils ONTAP pour la configuration de VMware vSphere à l'aide des données disponibles dans les données de volume ONTAP. Lorsque vous perdez la configuration, arrêtez-la en douceur.
+
+
+NOTE: Vous ne pouvez pas restaurer vos outils ONTAP pour la configuration de VMware vSphere en cas de problème avec vCenter Server ou le logiciel de gestion des données ONTAP.
+
+*Étapes*
+
+. Connectez-vous au serveur vSphere.
+. Accédez au pool de ressources que vous avez créé, au cluster de nœuds ou à l'hôte sur lequel vous souhaitez déployer l'OVA.
+. Cliquez avec le bouton droit de la souris sur l'emplacement requis et sélectionnez *déployer le modèle OVF*.
+. Sélectionnez le fichier OVA via l'URL du fichier _.ova_ ou naviguez jusqu'au dossier dans lequel le fichier _.ova_ est enregistré, puis cliquez sur *Suivant*.
++
+
+NOTE: Vous devez utiliser la même version OVA que celle que vous avez utilisée pour installer la configuration de récupération.
+
+. Sélectionnez un nom et un dossier pour la machine virtuelle et sélectionnez *Suivant*.
+. Sélectionnez l'hôte et sélectionnez *Suivant*.
+. Passez en revue le résumé du modèle et sélectionnez *Suivant*.
+. Lisez et acceptez le contrat de licence et sélectionnez *Suivant*.
+. Dans la fenêtre *Configuration*, sélectionnez l'option *récupération*.
+. Dans la fenêtre *Sélectionner le stockage*, sélectionnez le stockage pour les configurations et les fichiers disque.
+. Dans la fenêtre *Sélectionner réseaux*, sélectionnez un réseau de destination pour chaque réseau source.
++
+
+NOTE: Vous devez conserver l'adresse IP de l'équilibreur de charge et l'adresse IP du serveur API Kubernetes. Vous pouvez modifier l'adresse IP du nœud ou conserver la même adresse IP.
+
+. Dans la fenêtre *Personnaliser le modèle*, entrez les détails requis et cliquez sur *Suivant*
++
+
+NOTE: Lorsque l'étendue de SVM est activée, vous devez avoir déjà activé la prise en charge des SVM avec l'adresse IP de gestion.
+
+. Consultez les détails dans la fenêtre *prêt à terminer*, sélectionnez *Terminer*.
++
+Au fur et à mesure de la création de la tâche de déploiement, la progression s'affiche dans la barre des tâches vSphere.
+
+. Mettez le serveur virtuel sous tension une fois la tâche terminée.
++
+L'installation commence. Vous pouvez suivre la progression de l'installation dans la console Web de la machine virtuelle. Dans le cadre de l'installation, les configurations de nœuds sont validées. Les entrées fournies sous différentes sections sous le modèle Personnaliser du formulaire OVF sont validées. En cas de divergence, une boîte de dialogue vous invite à prendre des mesures correctives.
+
+. Apportez les modifications nécessaires dans l'invite de la boîte de dialogue. Utilisez le bouton Tab pour naviguer dans le panneau et sélectionnez *OK*.
++
+Les valeurs fournies sont à nouveau validées. Les outils ONTAP pour VMware vSphere vous permettent de corriger toute valeur non valide en trois tentatives. Si vous ne parvenez pas à corriger les problèmes après trois tentatives, l'installation du produit s'arrête et il vous est conseillé d'essayer l'installation sur une nouvelle machine virtuelle.
+
+
+
+Une fois l'installation terminée, la console Web affiche l'état des outils ONTAP pour VMware vSphere.
+
+Une fois l'installation terminée, vous devez modifier manuellement la configuration matérielle requise conformément aux instructions de la link:../deploy/prerequisites.html["Conditions préalables au déploiement des outils ONTAP pour VMware vSphere"] page.

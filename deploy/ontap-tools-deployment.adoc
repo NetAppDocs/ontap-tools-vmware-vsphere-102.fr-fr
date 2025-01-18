@@ -1,0 +1,159 @@
+---
+permalink: deploy/ontap-tools-deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: Vous pouvez configurer un seul nœud non HA dans des configurations de petite ou moyenne taille. 
+---
+= Déployez les outils ONTAP pour VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez déployer les outils ONTAP pour VMware vSphere dans deux configurations :
+
+* Configuration à un seul nœud non HA
+* Configuration DE L'INFRASTRUCTURE HA
+
+
+[role="tabbed-block"]
+====
+.Configuration à un seul nœud non HA
+--
+Vous pouvez déployer une configuration à un seul nœud non HA dans une configuration de petite ou moyenne taille.
+
+* La petite configuration non HA contient 8 processeurs et 16 Go de RAM.
+* La configuration moyenne non HA contient 12 processeurs et 24 Go de RAM.
+
+
+*Avant de commencer*
+
+Assurez-vous que la route réseau est présente. Le réseau de données de stockage doit être accessible depuis le réseau de gestion des machines virtuelles. Par exemple, connectez-vous à ONTAP > exécutez la commande _network route create -vserver <SVM> -destination 0.0.0.0/0 -Gateway <gateway_ip>_
+
+*Étapes*
+
+. Téléchargez le `.zip` fichier contenant les binaires (_.ova_) et les certificats signés pour les outils ONTAP pour VMware vSphere à partir du https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["Site de support NetApp"^].
+. Connectez-vous au serveur vSphere.
+. Accédez au pool de ressources que vous avez créé ou au cluster ou à l'hôte sur lequel vous souhaitez déployer l'OVA.
+. Cliquez avec le bouton droit de la souris sur l'emplacement requis et sélectionnez *déployer le modèle OVF...*.
++
+
+NOTE: Ne déployez pas les outils ONTAP pour la machine virtuelle VMware vSphere sur un datastore vVols qu'il gère.
+
+. Sélectionnez le fichier OVA via l'URL du fichier _.ova_ ou naviguez jusqu'au dossier dans lequel le fichier _.ova_ est enregistré, puis cliquez sur *Suivant*.
+. Sélectionnez une ressource ordinateur et cliquez sur *Suivant*.
+. Passez en revue les détails du modèle et cliquez sur *Suivant*.
+. Lisez et acceptez le contrat de licence.
+. Sélectionnez la configuration de déploiement et cliquez sur *Suivant*.
++
+Les options de déploiement avancé utilisent Trident en tant que provisionneur de stockage dynamique pour ONTAP pour créer des volumes. Le déploiement simplifié utilise le stockage local pour créer des volumes.
+
+. Sélectionnez le stockage pour la configuration et les fichiers disque, puis cliquez sur *Suivant*.
+. Sélectionnez le réseau de destination pour chaque réseau source et cliquez sur *Suivant*.
+. Dans le *Personnaliser le modèle*, entrez les détails requis et cliquez sur *Suivant*
++
+** Lorsque l'étendue de SVM est activée, vous devez avoir déjà activé la prise en charge des SVM avec l'adresse IP de gestion.
+** Les informations fournies ici sont validées pour les modèles corrects lors du processus d'installation. En cas de divergence, un message d'erreur s'affiche sur la console Web et vous êtes invité à corriger toute information incorrecte fournie.
+** Les noms d'hôte doivent être composés de lettres majuscules (A-Z), de lettres minuscules (a-z), de chiffres (0-9) ou de caractères spéciaux de tiret (-). Si vous souhaitez configurer la double pile, spécifiez le nom d'hôte mappé sur l'adresse IPv6.
++
+
+NOTE: Le PROTOCOLE IPV6 pur n'est pas pris en charge. Le mode mixte est pris en charge avec les VLAN ayant des adresses IPv6 et IPv4.
+
+
+
+. Consultez les détails dans la fenêtre *prêt à terminer*, sélectionnez *Terminer*.
++
+Au fur et à mesure de la création de la tâche de déploiement, la progression s'affiche dans la barre des tâches vSphere.
+
+. Mettez le serveur virtuel sous tension une fois la tâche terminée.
+
+
+--
+.Configuration DE L'INFRASTRUCTURE HA
+--
+Vous pouvez configurer la haute disponibilité de trois nœuds dans des configurations de petite, moyenne ou grande taille. Le déploiement HAUTE DISPONIBILITÉ utilise Trident pour stocker les données de services.
+
+* Petit HA trois nœuds contiennent 8 processeurs et 16 Go de RAM par nœud.
+* Moyenne disponibilité trois nœuds contiennent 12 processeurs et 24 Go de RAM par nœud.
+* Grand système haute disponibilité, trois nœuds contiennent 16 processeurs et 32 Go de RAM par nœud.
+
+
+*Avant de commencer*
+
+Cette tâche fournit des instructions sur l'installation de trois nœuds HA dans des configurations de petite, moyenne ou haute disponibilité.
+
+La création de la bibliothèque de contenu est une étape obligatoire pour le déploiement de la configuration à trois nœuds haute disponibilité. Une bibliothèque de contenu dans VMware est un objet conteneur qui stocke les modèles de machine virtuelle, les modèles vApp et d'autres types de fichiers. Le déploiement avec la bibliothèque de contenu vous offre une expérience transparente car il ne dépend pas de la connectivité réseau.
+
+
+NOTE: Vous devez stocker la bibliothèque de contenu sur un datastore partagé, de sorte que tous les hôtes d'un cluster puissent y accéder. Vous devez créer une bibliothèque de contenu pour stocker l'OVA avant de déployer l'OVA dans la configuration HA.
+
+
+NOTE: Le modèle de bibliothèque de contenu une fois téléchargé ne doit pas être supprimé après le déploiement, car il sera utilisé pendant les redémarrages.
+
+Créez la bibliothèque de contenu en procédant comme suit :
+
+. Téléchargez le `.zip` fichier contenant les binaires (_.ova_) et les certificats signés pour les outils ONTAP pour VMware vSphere à partir du https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["Site de support NetApp"^].
+. Connectez-vous au client vSphere à l'aide de `\https://vcenterip/ui`
+. Sélectionnez les ellipses horizontales en regard de client vSphere et sélectionnez *Bibliothèque de contenu*.
+. Sélectionnez *Créer* à droite de la page.
+. Indiquez un nom pour la bibliothèque et créez la bibliothèque de contenu.
+. Accédez à la bibliothèque de contenu que vous avez créée.
+. Sélectionnez *actions* à droite de la page et sélectionnez *Importer élément* et importez le fichier OVA.
+
+
+
+NOTE: Pour plus d'informations, consultez https://blogs.vmware.com/vsphere/2020/01/creating-and-using-content-library.html["Création et utilisation de la bibliothèque de contenu"] le blog.
+
+Assurez-vous d'avoir importé votre OVA dans votre bibliothèque de contenu. Gardez à portée de main le nom de la bibliothèque de contenu et le nom de l'élément de bibliothèque que vous avez donné à votre élément OVA.
+
+
+NOTE: Avant de procéder au déploiement, définissez le gestionnaire de ressources distribuées (DRS) du cluster sur l'inventaire sur « conservateur » lors de l'installation des outils ONTAP. Cela permet de s'assurer que les machines virtuelles ne migrent pas pendant l'installation.
+
+*Étapes*
+
+. Téléchargez le `.zip` fichier contenant les binaires (_.ova_) et les certificats signés pour les outils ONTAP pour VMware vSphere à partir du https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["Site de support NetApp"^].
+. Connectez-vous au serveur vSphere.
+. Accédez au pool de ressources que vous avez créé ou au cluster ou à l'hôte sur lequel vous souhaitez déployer l'OVA.
+. Cliquez avec le bouton droit de la souris sur l'emplacement requis et sélectionnez *déployer le modèle OVF...*.
++
+
+NOTE: Ne déployez pas les outils ONTAP pour la machine virtuelle VMware vSphere sur un datastore vVols qu'il gère.
+
+. Sélectionnez le fichier OVA via l'URL du fichier _.ova_ ou naviguez jusqu'au dossier dans lequel le fichier _.ova_ est enregistré, puis cliquez sur *Suivant*.
+. Pour déployer les outils ONTAP pour VMware vSphere à partir de la bibliothèque de contenu :
++
+.. Accédez à votre bibliothèque de contenu et cliquez sur l'élément de bibliothèque que vous souhaitez déployer.
+.. Cliquez sur *actions* > *Nouveau VM à partir de ce modèle*
+
+
+. Sélectionnez une ressource ordinateur et cliquez sur *Suivant*.
+. Passez en revue les détails du modèle et cliquez sur *Suivant*.
+. Lisez et acceptez le contrat de licence et cliquez sur *Suivant*.
+. Sélectionnez la configuration de déploiement et cliquez sur *Suivant*.
+. Sélectionnez le stockage pour la configuration et les fichiers disque, puis cliquez sur *Suivant*.
+. Sélectionnez le réseau de destination pour chaque réseau source et cliquez sur *Suivant*.
+. Dans la fenêtre *Personnaliser le modèle*, remplissez les champs requis et cliquez sur *Suivant*.
++
+** En mode HA du déploiement, ne renommez pas les machines virtuelles après le déploiement.
+** Lorsque l'étendue de SVM est activée, vous devez avoir déjà activé la prise en charge des SVM avec l'adresse IP de gestion.
+** Les informations fournies ici sont validées pour les modèles corrects lors du processus d'installation. En cas de divergence, un message d'erreur s'affiche sur la console Web et vous êtes invité à corriger toute information incorrecte fournie.
+** Les noms d'hôte doivent être composés de lettres majuscules (A-Z), de lettres minuscules (a-z), de chiffres (0-9) ou de caractères spéciaux de tiret (-). Si vous souhaitez configurer la double pile, spécifiez le nom d'hôte mappé sur l'adresse IPv6.
++
+
+NOTE: Le PROTOCOLE IPV6 pur n'est pas pris en charge. Le mode mixte est pris en charge avec les VLAN ayant des adresses IPv6 et IPv4.
+
+
+
+. Consultez les détails dans la fenêtre *prêt à terminer*, sélectionnez *Terminer*.
++
+Au fur et à mesure de la création de la tâche de déploiement, la progression s'affiche dans la barre des tâches vSphere.
+
+. Mettez le serveur virtuel sous tension une fois la tâche terminée.
+
+
+--
+====
+Vous pouvez suivre la progression de l'installation au sein de la console Web de la machine virtuelle.
+
+En cas de divergence dans les valeurs saisies dans le formulaire OVF, une boîte de dialogue vous invite à prendre des mesures correctives. Effectuez les modifications nécessaires dans la boîte de dialogue, en utilisant le bouton Tab pour naviguer et sélectionner "OK". Vous avez trois tentatives pour corriger tout problème. Si les problèmes persistent après trois tentatives, le processus d'installation s'arrête et il est recommandé de réessayer l'installation sur une nouvelle machine virtuelle.

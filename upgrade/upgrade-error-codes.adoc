@@ -1,0 +1,146 @@
+---
+permalink: upgrade/upgrade-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 'Cette page présente les codes d"erreur relatifs à l"opération de mise à niveau des outils ONTAP pour le système VMware vSphere.' 
+---
+= Codes d'erreur de mise à niveau
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Des codes d'erreur peuvent s'afficher lors de la mise à niveau des outils ONTAP pour VMware vSphere. Les codes d'erreur sont composés de cinq chiffres, les deux premiers chiffres représentant le script qui a rencontré le problème, et les trois derniers chiffres représentent le flux de travail spécifique de ce script.
+
+Tous les journaux d'erreurs sont enregistrés dans le fichier ansible-perl-errors.log pour faciliter le suivi et la résolution des problèmes. Ce fichier journal contient le code d'erreur et la tâche Ansible qui a échoué.
+
+
+NOTE: Les codes d'erreur fournis sur cette page sont fournis à titre de référence uniquement. Contactez l'équipe d'assistance si l'erreur persiste ou si aucune résolution n'est mentionnée.
+
+Le tableau suivant répertorie les codes d'erreur et les noms de fichier correspondants.
+
+|===
+
+
+| *Code d'erreur* | *Nom du script* 
+
+
+| 00 | firstboot-network-config.pl, mode deploy 
+
+
+| 01 | firstboot-network-config.pl, mise à niveau du mode 
+
+
+| 02 | firstboot-inputs-validation.pl 
+
+
+| 03 | firstboot-deploy-otv-ng.pl, déploiement, haute disponibilité 
+
+
+| 04 | firstboot-deploy-otv-ng.pl, déploiement, non ha 
+
+
+| 05 | firstboot-deploy-otv-ng.pl, redémarrer 
+
+
+| 06 | firstboot-deploy-otv-ng.pl, mise à niveau, ha 
+
+
+| 07 | firstboot-deploy-otv-ng.pl, mise à niveau, non ha 
+
+
+| 08 | firstboot-otv-recovery.pl 
+|===
+Les trois derniers chiffres du code d'erreur indiquent l'erreur de flux de travail spécifique dans le script :
+
+|===
+
+
+| *Mettre à niveau le code d'erreur* | *Workflow* | *Résolution* 
+
+
+| 063 | La copie du contenu vers le volume de récupération a échoué | Restauration basée sur des snapshots 
+
+
+| 068 | Échec de la restauration des paquets Debian | Restauration basée sur des snapshots 
+
+
+| 069 | Échec de la restauration des fichiers | Restauration basée sur des snapshots 
+
+
+| 070 | Échec de la suppression de la sauvegarde | Restauration basée sur des snapshots 
+
+
+| 071 | Cluster Kubernetes défectueux | Restauration basée sur des snapshots 
+
+
+| 072 | Le fichier CR n'existe pas sur le disque Jail | Restauration basée sur des snapshots 
+
+
+| 073 | L'application de la CR a échoué lors de la définition de l'indicateur forcer la réconciliation sur FALSE | Restauration basée sur des snapshots 
+
+
+| 074 | Echec du montage ISO | Réessayez la mise à niveau. 
+
+
+| 075 | Échec des pré-vérifications de mise à niveau | Réessayez la mise à niveau. 
+
+
+| 076 | Échec de la mise à niveau du Registre | Restauration basée sur des snapshots 
+
+
+| 077 | Échec de la restauration du registre | Restauration basée sur des snapshots 
+
+
+| 078 | La mise à niveau de l'opérateur a échoué | Restauration basée sur des snapshots 
+
+
+| 079 | Echec du retour arrière de l'opérateur | Restauration basée sur des snapshots 
+
+
+| 080 | La mise à niveau des services a échoué | Restauration basée sur des snapshots 
+
+
+| 081 | Échec de la restauration des services | Restauration basée sur des snapshots 
+
+
+| 082 | Échec de la suppression des anciennes images du conteneur | Restauration basée sur des snapshots 
+
+
+| 083 | La suppression de la sauvegarde a échoué | Restauration basée sur des snapshots 
+
+
+| 084 | Echec de la remise en production du JobManager | Restauration basée sur des snapshots 
+
+
+| 085 | Échec de la création des secrets de certificat CA | Restauration basée sur des snapshots 
+
+
+| 086 | échec de la création des secrets de certificat de serveur/clé privée | Restauration basée sur des snapshots 
+
+
+| 087 | Échec ! pour terminer les étapes de mise à niveau post 10.0 à 10.1 | Échec des étapes post-mise à niveau. 
+
+
+| 088 | La configuration de la rotation du journal pour journald a échoué | Réessayez la mise à niveau. 
+
+
+| 089 | La modification de la propriété du fichier de configuration de rotation du journal de synthèse a échoué | Réessayez la mise à niveau. 
+
+
+| 091 | Échec de la mise à niveau iSCSI | Réessayez la mise à niveau. 
+
+
+| 092 | Échec de la restauration iSCSI | Réessayez la mise à niveau. 
+
+
+| 093 | échec de la mise à niveau de Trident | Réessayez la mise à niveau. 
+
+
+| 094 | échec de la restauration Trident | Réessayez la mise à niveau. 
+
+
+| 095 | Échec de la mise à niveau de Debian | Pas de récupération pour la mise à niveau Debian. Les services sont mis à niveau et de nouveaux pods seront en cours d'exécution 
+|===
+En savoir plus sur https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/How_to_restore_ONTAP_tools_for_VMware_vSphere_if_upgrade_fails_from_version_10.0_to_10.1["Restauration des outils ONTAP pour VMware vSphere en cas d'échec de la mise à niveau de la version 10.0 vers la version 10.1"]

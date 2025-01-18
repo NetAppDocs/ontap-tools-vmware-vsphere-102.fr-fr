@@ -1,0 +1,28 @@
+---
+permalink: manage/igroup-management.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Dans ONTAP, des règles d"exportation sont utilisées pour fournir un accès aux chemins d"accès aux données des volumes aux hôtes et les groupes initiateurs sont utilisés pour fournir un accès aux chemins d"accès aux données des LUN aux hôtes ESXi.' 
+---
+= Gestion des igroups et des règles d'export
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Dans ONTAP, les règles d'export sont utilisées pour fournir un accès aux données du volume aux hôtes, et les groupes initiateurs (igroups) sont utilisés pour fournir un accès aux données de numéro d'unité logique (LUN) aux hôtes ESXi. Les outils ONTAP pour VMware vSphere facilitent et intuitifs la création de groupe initiateur et offrent de riches flux de production de bout en bout. Pour garantir la cohérence, la création directe d'iGroup sur les plateformes de stockage n'est pas prise en charge.
+
+Lorsque des datastores de volumes virtuels sont créés ou montés sur des hôtes dans vCenter Server, les hôtes doivent avoir accès aux volumes (NFS) ou aux LUN (iSCSI) selon le type de protocole du datastore.
+
+La export policy est dynamique et la nouvelle export policy est créée avec le format nom de trident-UUID. Dans votre Gestionnaire système ONTAP, accédez à *stockage* > *machines virtuelles de stockage* > *[nom de la machine virtuelle de stockage]* > *Paramètres* > *règles d'exportation* pour afficher la stratégie d'exportation.
+
+Les igroups et les règles d'exportation dans les outils ONTAP pour VMware vSphere sont gérés de manière efficace et offrent les avantages suivants :
+
+* Prend en charge les groupes initiateurs et les règles d'exportation migrés.
+* Aucune interruption des opérations d'entrée et de sortie des machines virtuelles.
+* Prend en charge le montage sur des hôtes supplémentaires sans intervention manuelle.
+* Réduit le besoin de gérer le nombre de groupes initiateurs et de règles d'export.
+* Un Garbage Collector supprime automatiquement tous les igroups gérés inutilisés et les règles d'exportation régulièrement.
+* Si un datastore est provisionné au niveau du cluster hôte, le groupe initiateur est créé avec tous les initiateurs hôtes du cluster hôte qui sont ajoutés au groupe initiateur.
+

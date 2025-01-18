@@ -1,0 +1,39 @@
+---
+permalink: manage/certificate-manage.html 
+sidebar: sidebar 
+keywords:  
+summary: Une seule instance des outils ONTAP pour VMware vSphere peut gérer plusieurs instances vCenter Server. Les outils ONTAP pour VMware vSphere sont déployés avec un certificat auto-signé pour VASA Provider. Avec cela, une seule instance vCenter Server peut être gérée pour les datastores vVols. 
+---
+= Gérer les certificats
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Une seule instance des outils ONTAP pour VMware vSphere peut gérer plusieurs instances vCenter Server. Les outils ONTAP pour VMware vSphere sont déployés avec un certificat auto-signé pour VASA Provider. Avec cela, une seule instance vCenter Server peut être gérée pour les datastores vVols. Lorsque vous gérez plusieurs instances de serveur vCenter et que vous souhaitez activer la fonctionnalité vVols sur plusieurs instances de serveur vCenter, vous devez remplacer le certificat auto-signé par un certificat d'autorité de certification personnalisé à l'aide de l'interface du gestionnaire des outils ONTAP. Vous pouvez utiliser la même interface pour renouveler ou actualiser tous les certificats.
+
+
+NOTE: Une adresse IP d'équilibreur de charge différente mappée à différents domaines n'est pas prise en charge lorsque vous mettez à niveau l'autosignature vers une autorité de certification personnalisée.
+
+*Étapes*
+
+. Lancez le Gestionnaire d'outils ONTAP à partir d'un navigateur Web : `\https://loadBalanceIP:8443/virtualization/ui/`
+. Connectez-vous à l'aide des outils ONTAP pour les informations d'identification d'administrateur VMware vSphere que vous avez fournies lors du déploiement.
+. Sélectionnez *certificats* > *VASA Provider* > *Renew* option pour renouveler les certificats.
++
+
+NOTE: Le système sera hors ligne jusqu'au renouvellement du certificat.
+
+. Pour mettre à niveau le certificat auto-signé vers un certificat CA personnalisé, sélectionnez *certificats* > *VASA Provider* > *mettre à niveau vers CA* option.
++
+.. Dans la fenêtre contextuelle *mettre à niveau le certificat vers une autorité de certification personnalisée*, téléchargez le certificat du serveur, la clé privée du certificat du serveur, le certificat de l'autorité de certification racine et les fichiers de certificat intermédiaires. L'info-bulle fournit une description des certificats.
+.. Entrez le nom de domaine pour lequel vous avez généré ce certificat.
+.. Cliquez sur *Upgrade*.
++
+
+NOTE: Le système sera hors ligne jusqu'à la fin de la mise à niveau.
+
+
+
+

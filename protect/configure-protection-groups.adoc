@@ -1,0 +1,38 @@
+---
+permalink: protect/configure-protection-groups.html 
+sidebar: sidebar 
+keywords:  
+summary: Vous devez créer des groupes de protection pour protéger un groupe de machines virtuelles sur le site protégé. 
+---
+= Configuration des groupes de protection
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous devez créer des groupes de protection pour protéger un groupe de machines virtuelles sur le site protégé.
+
+*Ce dont vous aurez besoin*
+
+Vous devez vous assurer que les sites source et cible sont configurés pour les sites suivants :
+
+* La même version de VMware Live site Recovery est installée
+* Ordinateurs virtuels
+* Sites protégés et de reprise par paires
+* Les datastores source et de destination doivent être montés sur les sites respectifs
+
+
+*Étapes*
+
+. Connectez-vous à vCenter Server, puis cliquez sur *site Recovery* > *protection Groups*.
+. Dans le volet *protection Groups*, cliquez sur *Nouveau*.
+. Spécifiez un nom et une description pour le groupe de protection, la direction et cliquez sur *Suivant*.
+. Dans le champ *Type*, sélectionnez l'option de champ *Type...* en tant que groupes de datastores (réplication basée sur la baie) pour les datastores NFS et VMFS. Le domaine de panne n'est rien d'autre que les SVM avec la réplication activée. Les SVM qui ont uniquement mis en œuvre le peering et qui ne présentent aucun problème sont affichés.
+. Dans l'onglet Replication Groups, sélectionnez la paire de matrices activée ou les groupes de réplication sur lesquels la machine virtuelle est configurée, puis cliquez sur *Next*.
++
+Toutes les machines virtuelles du groupe de réplication sont ajoutées au groupe de protection.
+
+. Sélectionnez le plan de reprise existant ou créez un nouveau plan en cliquant sur *Ajouter au nouveau plan de reprise*.
+. Dans l'onglet prêt à terminer, vérifiez les détails du groupe de protection que vous avez créé, puis cliquez sur *Terminer*.
+

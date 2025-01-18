@@ -1,0 +1,24 @@
+---
+permalink: concepts/privileges-required.html 
+sidebar: sidebar 
+keywords:  
+summary: Différents outils ONTAP pour les tâches VMware vSphere requièrent différentes combinaisons de privilèges spécifiques aux outils ONTAP pour VMware vSphere et aux privilèges vCenter Server natifs. 
+---
+= Privilèges requis pour les outils ONTAP pour les tâches VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Différents outils ONTAP pour les tâches VMware vSphere requièrent différentes combinaisons de privilèges spécifiques aux outils ONTAP pour VMware vSphere et aux privilèges vCenter Server natifs.
+
+Pour accéder aux outils ONTAP de l'interface utilisateur graphique de VMware vSphere, vous devez disposer du privilège de vue spécifique aux outils ONTAP au niveau du produit, attribué au niveau d'objet vSphere approprié. Si vous vous connectez sans ce privilège, ONTAP Tools for VMware vSphere affiche un message d'erreur lorsque vous cliquez sur l'icône NetApp et vous empêche d'accéder aux outils ONTAP.
+
+Avec le privilège *View*, vous pouvez accéder aux outils ONTAP pour VMware vSphere. Ce privilège ne vous permet pas d'effectuer des tâches dans les outils ONTAP pour VMware vSphere. Pour exécuter des tâches ONTAP Tools for VMware vSphere, vous devez disposer des privilèges vCenter Server natifs et spécifiques aux outils ONTAP pour ces tâches.
+
+Le niveau d'affectation détermine les parties de l'interface utilisateur que vous pouvez voir. L'attribution du privilège d'affichage à l'objet racine (dossier) vous permet d'accéder aux outils ONTAP pour VMware vSphere en cliquant sur l'icône NetApp.
+
+Vous pouvez attribuer le privilège View à un autre niveau d'objet vSphere. Cependant, cela limite les outils ONTAP pour les menus VMware vSphere que vous pouvez voir et utiliser.
+
+L'objet racine est l'endroit recommandé pour attribuer une autorisation contenant le privilège d'affichage.

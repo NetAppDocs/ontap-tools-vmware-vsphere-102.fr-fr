@@ -1,0 +1,25 @@
+---
+permalink: manage/delete-hostcluster-protection.html 
+sidebar: sidebar 
+keywords: vVols datastore,delete vVol 
+summary: Lorsque vous supprimez la protection du cluster hôte, les datastores deviennent non protégés. 
+---
+= Retirez la protection du cluster hôte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+
+
+Lorsque vous supprimez la protection du cluster hôte, les datastores deviennent non protégés.
+
+.Étapes
+. Pour afficher les clusters d'hôtes protégés, accédez à *NetApp ONTAP Tools* > *protection* > *Host cluster relations*.
++
+Dans cette page, vous pouvez surveiller les clusters hôtes protégés ainsi que l'état de protection, la relation SnapMirror et l'état de SnapMirror correspondant.
+
+. Dans la fenêtre *protection du cluster hôte*, cliquez sur le menu kebab en regard du cluster, puis sélectionnez *Supprimer la protection*.
+

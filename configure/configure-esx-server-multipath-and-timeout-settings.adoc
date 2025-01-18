@@ -1,0 +1,34 @@
+---
+permalink: configure/configure-esx-server-multipath-and-timeout-settings.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Les outils ONTAP pour VMware vSphere vérifient et définissent les paramètres de chemins d"accès multiples de l"hôte VMware ESXi et les paramètres de délai de l"adaptateur HBA qui fonctionnent le mieux avec les systèmes de stockage NetApp.' 
+---
+= Configurer les paramètres de chemins d'accès multiples et de délai d'attente du serveur ESXi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les outils ONTAP pour VMware vSphere vérifient et définissent les paramètres des chemins d'accès multiples de l'hôte ESXi ainsi que les paramètres de délai d'expiration de l'adaptateur HBA qui fonctionnent mieux avec les systèmes de stockage NetApp.
+
+*À propos de cette tâche*
+
+Ce processus peut prendre un certain temps, selon votre configuration et la charge du système. La progression de la tâche s'affiche dans le panneau tâches récentes. Lorsque les tâches sont terminées, l'icône d'alerte d'état de l'hôte est remplacée par l'icône Normal ou l'icône redémarrage en attente.
+
+*Étapes*
+
+. Sur la page d'accueil du client Web VMware vSphere, cliquez sur *hosts and clusters*.
+. Cliquez avec le bouton droit de la souris sur un hôte et sélectionnez *NetApp ONTAP Tools* > *Update host data*.
+. Dans la page des raccourcis, cliquez sur *NetApp ONTAP Tools* dans la section des modules externes.
+. Accédez à la carte de conformité des hôtes VMware ESXi dans la Présentation (tableau de bord) du plug-in ONTAP Tools for VMware vSphere.
+. Sélectionnez le lien *appliquer les paramètres recommandés*.
+. Dans la fenêtre *appliquer les paramètres d'hôte recommandés*, sélectionnez les hôtes que vous souhaitez respecter avec les paramètres d'hôte recommandés par NetApp et cliquez sur *Suivant*.
++
+
+NOTE: Vous pouvez développer l'hôte ESXi pour voir les valeurs actuelles.
+
+. Dans la page des paramètres, sélectionnez les valeurs recommandées.
+. Dans le volet récapitulatif, vérifiez les valeurs et cliquez sur *Terminer*. Vous pouvez suivre la progression dans le panneau des tâches récentes.
+

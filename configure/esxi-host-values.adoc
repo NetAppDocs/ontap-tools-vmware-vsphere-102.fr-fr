@@ -1,0 +1,86 @@
+---
+permalink: configure/esxi-host-values.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous pouvez définir des délais d"expiration et d"autres valeurs sur les hôtes ESXi à l"aide des outils ONTAP pour VMware vSphere afin de garantir des performances optimales et un basculement réussi. Les outils ONTAP pour les ensembles VMware vSphere sont basés sur des tests NetApp internes.' 
+---
+= Définissez les valeurs de l'hôte ESXi
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez définir des délais d'expiration et d'autres valeurs sur les hôtes ESXi à l'aide des outils ONTAP pour VMware vSphere afin de garantir des performances optimales et un basculement réussi. Les outils ONTAP pour les ensembles VMware vSphere sont basés sur des tests NetApp internes.
+
+Vous pouvez définir les valeurs suivantes sur un hôte ESXi :
+
+
+
+== Paramètres de l'adaptateur HBA/CNA
+
+Définit les paramètres de délai d'expiration de HBA recommandés pour les systèmes de stockage NetApp.
+
+* *Disk.QFullSampleSize*
++
+Définissez cette valeur sur 32 pour toutes les configurations. La définition de cette valeur permet d'éviter les erreurs d'E/S.
+
+* *Disk.QFullThreshold*
++
+Définissez cette valeur sur 8 pour toutes les configurations. La définition de cette valeur permet d'éviter les erreurs d'E/S.
+
+* *Délais de connexion HBA FC Emulex*
++
+Utilisez la valeur par défaut.
+
+* *Délais de connexion HBA FC QLogic*
++
+Utilisez la valeur par défaut.
+
+
+
+
+
+== Paramètres MPIO
+
+Les paramètres MPIO définissent les chemins préférés des systèmes de stockage NetApp. Les paramètres MPIO déterminent quels chemins disponibles sont optimisés (par opposition aux chemins non optimisés qui traversent le câble d'interconnexion) et définissent le chemin préféré sur l'un de ces chemins.
+
+Dans les environnements hautes performances, ou lorsque vous testez les performances avec un seul datastore LUN, pensez à modifier le paramètre d'équilibrage de charge de la règle de sélection de chemin (PSP) de Round Robin (VMW_PSP_RR) du paramètre d'IOPS par défaut de 1000 à une valeur de 1.
+
+
+
+== Paramètres NFS
+
+* *Net.TcpipeHeapSize*
++
+Définissez cette valeur sur 32.
+
+* *Net.TcpipeHeapMax*
++
+Définissez cette valeur sur 1024 Mo.
+
+* *NFS.Maxvolumes*
++
+Définissez cette valeur sur 256.
+
+* *NFS41.Maxvolumes*
++
+Définissez cette valeur sur 256.
+
+* *NFS.MaxQueueDepth*
++
+Définissez cette valeur sur 128 ou plus pour éviter les goulots d'étranglement dans la file d'attente.
+
+* *NFS.HeartbeatMaxFailures*
++
+Définissez cette valeur sur 10 pour toutes les configurations NFS.
+
+* *NFS.HeartbeatFrequency*
++
+Définissez cette valeur sur 12 pour toutes les configurations NFS.
+
+* *NFS.HeartbeatTimeout*
++
+Définissez cette valeur sur 5 pour toutes les configurations NFS.
+
+

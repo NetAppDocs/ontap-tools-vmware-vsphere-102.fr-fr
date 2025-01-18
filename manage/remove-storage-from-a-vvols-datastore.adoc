@@ -1,0 +1,26 @@
+---
+permalink: manage/remove-storage-from-a-vvols-datastore.html 
+sidebar: sidebar 
+keywords: Remove vVol datastore 
+summary: 'L"action Supprimer le datastore supprime le datastore lorsqu"il n"y a pas de vVols sur le datastore sélectionné.' 
+---
+= Réduire le datastore vVols
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'action Supprimer le datastore supprime le datastore lorsqu'il n'y a pas de vVols sur le datastore sélectionné.
+
+.Étapes
+. Dans la page d'accueil de vSphere client, cliquez sur *hôtes et clusters*.
+. Dans le volet de navigation, sélectionnez le centre de données qui contient le datastore.
+. Cliquez avec le bouton droit de la souris sur le datastore vVol et sélectionnez *NetApp ONTAP Tools* > *Remove Storage from datastore*.
+. Sélectionnez les volumes qui n'ont pas de vVols et cliquez sur *Supprimer*.
++
+
+NOTE: L'option de sélection du volume sur lequel réside les vVols est désactivée.
+
+. Dans la fenêtre contextuelle *Supprimer le stockage*, cochez la case *Supprimer les volumes du cluster ONTAP* pour supprimer les volumes du datastore et du stockage ONTAP, puis cliquez sur *Supprimer*.
+

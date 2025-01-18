@@ -1,0 +1,273 @@
+---
+sidebar: sidebar 
+permalink: automation/get-started-with-the-rest-api.html 
+keywords: REST API 
+summary: 'L"accès à l"API fournit une perspective avant de commencer à l"utiliser avec les processus de workflow plus complexes dans une configuration en direct.' 
+---
+= Commencez avec l'API REST
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez vous lancer rapidement à l'aide des outils ONTAP pour l'API REST VMware vSphere. L'accès à l'API fournit une perspective avant de commencer à l'utiliser avec les processus de workflow plus complexes dans une configuration en direct.
+
+
+
+== Bonjour tout le monde
+
+Vous pouvez exécuter une commande simple sur votre système pour commencer à utiliser les outils ONTAP pour l'API REST VMware vSphere et vérifier sa disponibilité.
+
+.Avant de commencer
+* Assurez-vous que l'utilitaire Curl est disponible sur votre système.
+* Adresse IP ou nom d'hôte des outils ONTAP pour le serveur VMware vSphere
+* Nom d'utilisateur et mot de passe pour un compte autorisé à accéder aux outils ONTAP pour l'API REST VMware vSphere.
+
+
+
+NOTE: Si vos informations d'identification incluent des caractères spéciaux, vous devez les formater de manière acceptable pour Curl, en fonction du shell que vous utilisez. Par exemple, vous pouvez insérer une barre oblique inverse avant chaque caractère spécial ou envelopper la chaîne entière `username:password` entre guillemets simples.
+
+.Étape
+Sur l'interface de ligne de commande, exécutez les commandes suivantes pour récupérer les informations du plug-in :
+
+`curl -X GET -u username:password -k "\https://<ip_address>/api/hosts?fields=IncludePluginInfo"`
+
+Exemple :
+
+`curl -X GET -u admin:password -k "'\https://10.225.87.97/api/hosts?fields=IncludePluginInfo"`
+
+
+
+== Comment accéder aux outils ONTAP pour l'API REST VMware vSphere
+
+Vous pouvez accéder ONTAP à l'API REST de plusieurs façons.
+
+
+
+== Considérations réseau
+
+Vous pouvez vous connecter à l'API REST via les interfaces suivantes :
+
+* LIF Cluster-management
+* FRV de gestion des nœuds
+* LIF de gestion SVM
+
+
+La LIF que vous choisissez d'utiliser doit être configurée pour prendre en charge le protocole de gestion HTTPS. De plus, la configuration du pare-feu de votre réseau doit autoriser le trafic HTTPS.
+
+
+NOTE: Vous devez toujours utiliser une LIF de cluster management. La charge sera ainsi équilibrée entre les requêtes d'API sur tous les nœuds et évitez les nœuds hors ligne ou qui rencontrent des problèmes de connectivité. Si plusieurs LIF de cluster management sont configurées, elles sont toutes équivalentes en ce qui concerne l'accès à l'API REST.
+
+
+
+== Variables d'entrée contrôlant une requête API
+
+Vous pouvez contrôler le traitement d'un appel API à l'aide de paramètres et de variables définis dans la requête HTTP.
+
+
+
+== Méthodes HTTP
+
+Le tableau suivant présente les méthodes HTTP prises en charge par les outils ONTAP pour l'API REST VMware vSphere.
+
+
+NOTE: Toutes les méthodes HTTP ne sont pas disponibles sur chacun des terminaux REST.
+
+|===
+| Méthode HTTP | Description 
+
+
+| OBTENEZ | Récupère les propriétés d'un objet sur une instance ou une collection de ressources. 
+
+
+| POST | Crée une nouvelle instance de ressource en fonction de l'entrée fournie. 
+
+
+| SUPPRIMER | Supprime une instance de ressource existante. 
+
+
+| EN | Modifie une instance de ressource existante. 
+|===
+
+
+== En-têtes de demande
+
+Vous devez inclure plusieurs en-têtes dans la requête HTTP.
+
+
+
+=== Type de contenu
+
+Si le corps de la demande inclut JSON, cet en-tête doit être défini sur _application/json_.
+
+
+
+=== Accepter
+
+Cet en-tête doit être réglé sur _application/json_.
+
+
+
+=== Autorisation
+
+L'authentification de base doit être définie avec le nom d'utilisateur et le mot de passe codés comme une chaîne base64.
+
+
+
+== Corps de la demande
+
+Le contenu du corps de la demande varie en fonction de l'appel spécifique. Le corps de requête HTTP comprend l'un des éléments suivants :
+
+* Objet JSON avec variables d'entrée
+* Vide
+
+
+
+
+== Filtrage d'objets
+
+Lors de l'émission d'un appel API utilisant GET, vous pouvez limiter ou filtrer les objets renvoyés en fonction de n'importe quel attribut. Par exemple, vous pouvez spécifier une valeur exacte à associer :
+
+`<field>=<query value>`
+
+En plus d'une correspondance exacte, d'autres opérateurs sont disponibles pour renvoyer un ensemble d'objets sur une plage de valeurs. Les outils ONTAP pour l'API REST VMware vSphere prennent en charge les opérateurs de filtrage indiqués dans le tableau ci-dessous.
+
+|===
+| Opérateur | Description 
+
+
+| = | Égal à 
+
+
+| < | Inférieur à 
+
+
+| > | Supérieur à 
+
+
+| &lt ;= | Inférieur ou égal à 
+
+
+| >= | Supérieur ou égal à 
+
+
+| MISE À JOUR | Ou 
+
+
+| ! | Différent de 
+
+
+| * | Un caractère générique gourmand 
+|===
+Vous pouvez également renvoyer une collection d'objets en fonction de la définition ou non d'un champ spécifique à l'aide du mot clé *null* ou de sa négation *!null* dans le cadre de la requête.
+
+
+NOTE: Les champs qui ne sont pas définis sont généralement exclus des requêtes correspondantes.
+
+
+
+== Demande de champs d'objet spécifiques
+
+Par défaut, l'émission d'un appel API à l'aide DE GET renvoie uniquement les attributs qui identifient de manière unique l'objet ou les objets. Cet ensemble minimal de champs sert de clé pour chaque objet et varie en fonction du type d'objet. Vous pouvez sélectionner des propriétés d'objet supplémentaires à l'aide du `fields` paramètre de requête de l'une des manières suivantes :
+
+
+
+=== Champs communs ou standard
+
+Spécifiez *fields=** pour récupérer les champs d'objet les plus couramment utilisés. Ces champs sont généralement conservés dans la mémoire du serveur local ou nécessitent peu de traitement pour accéder à. Ce sont les mêmes propriétés que pour un objet après avoir utilisé GET avec une clé de chemin d'URL (UUID).
+
+
+
+=== Tous les champs
+
+Spécifiez *fields=*** pour récupérer tous les champs d'objet, y compris ceux nécessitant un traitement de serveur supplémentaire pour accéder.
+
+
+
+=== Sélection de champ personnalisée
+
+Utilisez *fields=<nom_champ>* pour spécifier le champ exact souhaité. Lorsque vous demandez plusieurs champs, les valeurs doivent être séparées à l'aide de virgules sans espace.
+
+
+IMPORTANT: Vous devez toujours identifier les champs spécifiques que vous souhaitez. Vous ne devez récupérer que l'ensemble des champs communs ou tous les champs, le cas échéant. Les champs sont classés comme communs et renvoyés à l'aide de _fields=*_, lesquels sont déterminés par NetApp en fonction de l'analyse des performances internes. La classification d'un champ pourrait changer dans les versions futures.
+
+
+
+== Tri des objets dans le jeu de sortie
+
+Les enregistrements d'une collection de ressources sont renvoyés dans l'ordre par défaut défini par l'objet. Vous pouvez modifier l'ordre à l'aide du `order_by` paramètre de requête avec le nom de champ et la direction de tri comme suit :
+
+`order_by=<field name> asc|desc`
+
+Par exemple, vous pouvez trier le champ de type par ordre décroissant, suivi d'un ID par ordre croissant :
+
+`order_by=type desc, id asc`
+
+* Si vous spécifiez un champ de tri sans fournir de direction, les valeurs sont triées par ordre croissant.
+* Lorsque vous utilisez plusieurs paramètres, vous devez séparer les champs par une virgule.
+
+
+
+
+== Pagination lors de la récupération d'objets dans une collection
+
+Lors de l'émission d'un appel D'API via GET pour accéder à une collection d'objets du même type, les outils ONTAP pour VMware vSphere tentent de renvoyer autant d'objets que possible en fonction de deux contraintes. Vous pouvez contrôler chacune de ces contraintes à l'aide de paramètres de requête supplémentaires sur la demande. La première contrainte atteinte pour une demande GET spécifique met fin à la demande et limite donc le nombre d'enregistrements renvoyés.
+
+
+NOTE: Si une demande se termine avant de passer à l'itération de tous les objets, la réponse contient le lien nécessaire pour récupérer le lot d'enregistrements suivant.
+
+
+
+=== Limitation du nombre d'objets
+
+Par défaut, les outils ONTAP pour VMware vSphere renvoient un maximum de 10,000 objets pour une requête GET. Vous pouvez modifier cette limite à l'aide du paramètre _max_records_ query. Par exemple :
+
+`max_records=20`
+
+Le nombre d'objets renvoyés peut être inférieur au maximum en vigueur, en fonction de la contrainte de temps associée ainsi que du nombre total d'objets dans le système.
+
+
+
+=== Limitation du temps utilisé pour récupérer les objets
+
+Par défaut, les outils ONTAP pour VMware vSphere renvoient autant d'objets que possible dans le temps imparti pour la requête GET. Le délai par défaut est de 15 secondes. Vous pouvez modifier cette limite à l'aide du paramètre _return_timeout_ query. Par exemple :
+
+`return_timeout=5`
+
+Le nombre d'objets renvoyés peut être inférieur au nombre maximum en vigueur, en fonction de la contrainte liée au nombre d'objets ainsi que du nombre total d'objets dans le système.
+
+
+
+=== Rétrécir le jeu de résultats
+
+Si nécessaire, vous pouvez combiner ces deux paramètres avec des paramètres de requête supplémentaires pour affiner le jeu de résultats. Par exemple, le suivant renvoie jusqu'à 10 événements EMS générés après le temps spécifié :
+
+`time=> 2018-04-04T15:41:29.140265Z&max_records=10`
+
+Vous pouvez émettre plusieurs demandes de page via les objets. Chaque appel d'API suivant doit utiliser une nouvelle valeur de temps basée sur le dernier événement du dernier jeu de résultats.
+
+
+
+== Propriétés de taille
+
+Les valeurs d'entrée utilisées avec certains appels API ainsi que certains paramètres de requête sont numériques. Au lieu de fournir un entier en octets, vous pouvez éventuellement utiliser un suffixe comme indiqué dans le tableau suivant.
+
+|===
+| Suffixe | Description 
+
+
+| KO | Ko kilo-octets (1024 octets) ou kibioctets 
+
+
+| MO | Mo mégaoctets (Ko x 1024 octets) ou mébioctets 
+
+
+| GO | Go gigaoctets (Mo x 1024 octets) ou gibioctets 
+
+
+| TO | To Teroctets (Go x 1024 byes) ou tébioctets 
+
+
+| PO | PB po (TB x 1024 byes) ou pemabmabl 
+|===

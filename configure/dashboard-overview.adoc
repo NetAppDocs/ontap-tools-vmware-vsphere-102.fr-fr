@@ -1,0 +1,39 @@
+---
+permalink: configure/dashboard-overview.html 
+sidebar: sidebar 
+keywords: user roles 
+summary: 'Lorsque vous sélectionnez l"icône du plug-in NetApp ONTAP Tools for VMware vSphere dans la section des raccourcis du client vCenter, l"interface utilisateur accède à la page de présentation. Cette page fonctionne comme le tableau de bord qui fournit le résumé du plug-in ONTAP Tools for VMware vSphere.' 
+---
+= Présentation du tableau de bord du plug-in NetApp ONTAP Tools for VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Lorsque vous sélectionnez l'icône du plug-in NetApp ONTAP Tools for VMware vSphere dans la section des raccourcis du client vCenter, l'interface utilisateur accède à la page de présentation. Cette page fonctionne comme le tableau de bord qui fournit le résumé du plug-in ONTAP Tools for VMware vSphere.
+
+Dans le cas de la configuration ELM (Enhanced Linked mode Setup), le menu déroulant de sélection de vCenter Server apparaît et vous pouvez sélectionner un serveur vCenter pour afficher les données qui lui sont pertinentes. Cette liste déroulante est disponible pour toutes les autres vues de liste du plug-in. La sélection de vCenter Server effectuée dans une page est conservée dans les onglets du plug-in. image:../media/remote-plugin-dashboard.png["Présentation du tableau de bord"]
+
+Le tableau de bord comporte plusieurs cartes montrant différents éléments du système. Le tableau suivant montre les différentes cartes et ce qu'elles représentent.
+
+|===
+
+
+| *Nom de la carte* | *Description* 
+
+
+| État | La carte d'état indique le nombre de systèmes back-end de stockage ajoutés, ainsi que l'état d'intégrité global des systèmes back-end de stockage et l'état du fournisseur VASA d'une instance vCenter. L'état des systèmes back-end de stockage devient « sain » lorsque l'état de tous les systèmes back-end est normal. L'état des systèmes back-end de stockage affiche « malsain » si l'un des systèmes back-end de stockage présente un problème (état Inconnu/inaccessible/dégradé). Lorsque vous cliquez sur le statut « malsain », une info-bulle s'affiche avec le statut des systèmes back-end. Pour plus d'informations, cliquez sur n'importe quel back-end de stockage. Le lien autres États VASA Provider (VP) indique l'état actuel du VP enregistré dans vCenter Server. 
+
+
+| Systèmes back-end de stockage - capacité | Cette carte affiche la capacité cumulée utilisée et disponible de tous les systèmes back-end de stockage pour l'instance vCenter Server sélectionnée. 
+
+
+| Ordinateurs virtuels | Cette fiche présente les 10 principales machines virtuelles classées par mesure de performance. Vous pouvez cliquer sur l'en-tête pour obtenir les 10 premières machines virtuelles de la mesure sélectionnée, triées par ordre croissant ou décroissant. Les modifications de tri et de filtrage effectuées sur la carte persistent jusqu'à ce que vous changiez ou effacez le cache du navigateur. 
+
+
+| Datastore | Cette carte présente les 10 principaux datastores classés par mesure de performance. Vous pouvez cliquer sur l'en-tête pour obtenir les 10 principaux datastores de la mesure sélectionnée triés par ordre croissant ou décroissant. Les modifications de tri et de filtrage effectuées sur la carte persistent jusqu'à ce que vous changiez ou effacez le cache du navigateur. Une liste déroulante Type de datastore permet de sélectionner le type de datastores : NFS, VMFS ou vVols. 
+
+
+| Carte de conformité de l'hôte ESXi | Cette carte affiche l'état de conformité global de tous les paramètres des hôtes VMware ESXi (pour le vCenter sélectionné) en fonction des paramètres d'hôte NetApp recommandés par groupe/catégorie de paramètres. Vous pouvez cliquer sur le lien appliquer les paramètres recommandés pour appliquer les paramètres recommandés. Vous pouvez cliquer sur incidents/Unknown pour afficher la liste des hôtes. 
+|===
