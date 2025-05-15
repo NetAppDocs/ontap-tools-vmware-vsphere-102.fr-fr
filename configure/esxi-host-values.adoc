@@ -19,24 +19,12 @@ Vous pouvez définir les valeurs suivantes sur un hôte ESXi :
 
 == Paramètres de l'adaptateur HBA/CNA
 
-Définit les paramètres de délai d'expiration de HBA recommandés pour les systèmes de stockage NetApp.
+Définit les paramètres suivants sur les valeurs par défaut :
 
-* *Disk.QFullSampleSize*
-+
-Définissez cette valeur sur 32 pour toutes les configurations. La définition de cette valeur permet d'éviter les erreurs d'E/S.
-
-* *Disk.QFullThreshold*
-+
-Définissez cette valeur sur 8 pour toutes les configurations. La définition de cette valeur permet d'éviter les erreurs d'E/S.
-
-* *Délais de connexion HBA FC Emulex*
-+
-Utilisez la valeur par défaut.
-
-* *Délais de connexion HBA FC QLogic*
-+
-Utilisez la valeur par défaut.
-
+* Disk.QFullSampleSize
+* Disk.QFullThreshold
+* Délais d'expiration de la carte HBA FC Emulex
+* Délais de connexion HBA FC QLogic
 
 
 
