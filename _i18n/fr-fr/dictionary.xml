@@ -342,7 +342,6 @@
   <block id="7f2d9eb042fad8493c138993f867cd80" category="paragraph">La liste est actualisée et le système back-end de stockage ajouté apparaît dans la liste.</block>
   <block id="f6c30a782639c90ebe44f3f343922077" category="summary">Les instances vCenter Server sont les plateformes de gestion centrale qui vous permettent de contrôler les hôtes, les machines virtuelles (VM) et les systèmes back-end de stockage.</block>
   <block id="6245e46af5a3bdaf57696763c4214c70" category="doc">Ajouter des instances vCenter Server</block>
-  <block id="9a22df67797f0968951385551d26d202" category="paragraph">VCenter Server fournit la plateforme de gestion centralisée qui vous permet de contrôler les hôtes, les machines virtuelles (VM) et les systèmes back-end de stockage.</block>
   <block id="aaf638e0edd71bac35fef1b1149f3843" category="paragraph">Vous pouvez ajouter et gérer plusieurs instances de serveur vCenter à l'aide d'une seule instance des outils ONTAP pour VMware vSphere.</block>
   <block id="0336e0a2e9f5b95c0d4178d3186ecbf6" category="list-text">Sélectionnez *vCenters* dans la barre latérale.</block>
   <block id="4287076fd3b7cc772889cb75d012c773" category="list-text">Sélectionnez *Ajouter* pour intégrer les instances de vCenter Server et fournissez votre adresse IP/nom d'hôte vCenter, votre nom d'utilisateur, votre mot de passe et vos détails de port.</block>
@@ -676,7 +675,6 @@
   <block id="02ecc951ba9c7de4ba8def4213f1982e" category="list-text">Pour afficher les clusters d'hôtes protégés, accédez à *NetApp ONTAP Tools* &gt; *protection* &gt; *Host cluster relations*.</block>
   <block id="88cea8a228e76d96b5b014b926e19795" category="summary">Vous pouvez enregistrer et annuler l'enregistrement du fournisseur VASA auprès d'une instance vCenter Server à l'aide des outils ONTAP pour l'interface de plug-in à distance VMware vSphere.</block>
   <block id="062e7967273cea76dff9c3579a0c44db" category="doc">Enregistrez le fournisseur VASA avec une instance vCenter Server</block>
-  <block id="b59d64b98fd315f6b2bb4cfbeef9a7fd" category="paragraph">Vous pouvez enregistrer et annuler l'enregistrement du fournisseur VASA auprès d'une instance vCenter Server à l'aide des outils ONTAP pour l'interface de plug-in à distance VMware vSphere. La section Vasa Provider Settings affiche l'état d'enregistrement du VASA Provider pour le serveur vCenter sélectionné.</block>
   <block id="711a24c1ed1e14106df5e83af675d10f" category="list-text">Sélectionnez *Paramètres* &gt; *VASA Provider settings*. L'état d'enregistrement du fournisseur VASA s'affiche comme non enregistré.</block>
   <block id="7bd80420c7575554792093f90dbbe6ed" category="list-text">Cliquez sur le bouton *REGISTER* pour enregistrer le fournisseur VASA.</block>
   <block id="2a8034ce8dbfe14fabe94e3ca6c7b860" category="list-text">Entrez un nom pour le fournisseur VASA et fournissez les informations d'identification de l'utilisateur de l'application ONTAP vSphere, puis cliquez sur *REGISTER*.</block>
@@ -1833,4 +1831,7 @@
   <block id="f66a3c183f0e736240b77f8b755c880e" category="list-text">Disk.QFullThreshold</block>
   <block id="19c08de7404551288e1274186e039ef4" category="list-text">Délais d'expiration de la carte HBA FC Emulex</block>
   <block id="d46cddda4da7ec11f17472d11df95b68" category="list-text">Délais de connexion HBA FC QLogic</block>
+  <block id="a9a74d98e6d11230d876df92acb424fd" category="paragraph">Ajoutez des instances de vCenter Server aux outils ONTAP pour VMware vSphere pour configurer, gérer et protéger vos datastores virtuels dans votre environnement vCenter Server. Lorsque vous ajoutez plusieurs instances de vCenter Server, des certificats d’autorité de certification personnalisés sont requis pour une communication sécurisée entre les outils ONTAP et chaque vCenter Server.</block>
+  <block id="56564ecb20e9cb45429b432b22f216f4" category="admonition">Les paramètres MPIO ne s'appliquent pas aux protocoles NVMe, NVMe/FC et NVMe/TCP.</block>
+  <block id="07c9ecda15aaf26d8eef3770025ec27c" category="paragraph">Vous pouvez enregistrer le fournisseur VASA dans une instance de serveur vCenter à l'aide des outils ONTAP pour VMware vSphere. La section Paramètres du fournisseur VASA affiche l'état d'enregistrement du fournisseur VASA pour le serveur vCenter sélectionné. Dans un déploiement multi-vCenter, assurez-vous de disposer de certificats d’autorité de certification personnalisés pour chaque instance de vCenter Server.</block>
 </blocks>

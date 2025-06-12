@@ -11,7 +11,7 @@ summary: 'Les instances vCenter Server sont les plateformes de gestion centrale 
 
 
 [role="lead"]
-VCenter Server fournit la plateforme de gestion centralisée qui vous permet de contrôler les hôtes, les machines virtuelles (VM) et les systèmes back-end de stockage.
+Ajoutez des instances de vCenter Server aux outils ONTAP pour VMware vSphere pour configurer, gérer et protéger vos datastores virtuels dans votre environnement vCenter Server. Lorsque vous ajoutez plusieurs instances de vCenter Server, des certificats d’autorité de certification personnalisés sont requis pour une communication sécurisée entre les outils ONTAP et chaque vCenter Server.
 
 *À propos de cette tâche*
 
