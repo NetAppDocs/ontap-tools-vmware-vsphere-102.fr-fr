@@ -13,7 +13,7 @@ summary: Fournit des informations importantes sur cette version des outils ONTAP
 [role="lead"]
 Découvrez les nouveautés et les améliorations disponibles dans les outils ONTAP pour VMware vSphere 10.2.
 
-Pour obtenir la liste complète des nouvelles fonctionnalités et améliorations, reportez-vous à xref:whats-new-otv-102.adoc[Nouveautés des outils ONTAP pour VMware vSphere 10.2]la section .
+Pour obtenir la liste complète des nouvelles fonctionnalités et améliorations, consultez link:whats-new-otv-102.html["Nouveautés des outils ONTAP pour VMware vSphere 10.2"].
 
 Pour savoir si la migration à partir des outils ONTAP pour VMware vSphere 9 vers les outils ONTAP 10.2 est adaptée à votre déploiement, reportez-vous à la xref:ontap-tools-9-ontap-tools-10-feature-comparison.adoc[Comparaison des fonctionnalités des outils ONTAP pour VMware vSphere 9 et des outils ONTAP pour VMware vSphere 10]. La migration est prise en charge à partir des outils ONTAP pour VMware vSphere 9.10D2, 9.11D4, 9.12 et 9.13 vers les outils ONTAP 10.2.
 
